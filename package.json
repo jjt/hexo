@@ -1,0 +1,33 @@
+{
+  "name": "hexo",
+  "version": "1.0.0",
+  "description": "HEXO",
+  "main": "hexo.js",
+  "scripts": {
+    "livereload": "livereload . -p 35729 -i 100",
+    "serve": "http-server -p 9090 ./",
+    "stylus": "stylus -u autoprefixer-stylus -w -m --sourcemap-base ./styles styles/hexo.styl",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watchify": "watchify --extension=\".cjsx\" --extension=\".coffee\" hexo.cjsx -o hexo.js",
+    "watch": "parallelshell 'npm run watchify' 'npm run livereload' 'npm run serve' 'npm run stylus'"
+  },
+  "browserify": {
+    "transform": [
+      "coffee-reactify"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer-stylus": "^0.4.0",
+    "coffee-react": "^2.1.2",
+    "coffee-reactify": "^2.1.0",
+    "http-server": "^0.7.4",
+    "livereload": "^0.3.4",
+    "nib": "^1.0.4",
+    "parallelshell": "^1.0.3",
+    "react": "^0.12.2",
+    "stylus": "^0.49.3",
+    "watchify": "^2.2.1"
+  }
+}
