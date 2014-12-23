@@ -1,5 +1,31 @@
+.c1 {
+  background: #c66;
+}
+.c2 {
+  background: #de935f;
+}
+.c3 {
+  background: #f0c674;
+}
+.c4 {
+  background: #b5bd68;
+}
+.c5 {
+  background: #8abeb7;
+}
+.c6 {
+  background: #81a2be;
+}
+.c7 {
+  background: #b294bb;
+}
+.c8 {
+  background: #a3685a;
+}
 body {
   background: #282a2e;
+  height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 .hex-clip-vertical,
 .hex {
@@ -7,8 +33,17 @@ body {
           clip-path: polygon(100% 50%, 75% 93.30127018922192%, 25% 93.30127018922192%, 0% 50%, 25% 6.698729810778048%, 75% 6.698729810778048%);
 }
 .hex {
+  position: absolute;
   width: 100px;
   height: 100px;
-  background: #969896;
+  margin-top: -50px;
+  margin-left: -50px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 30px;
+  color: rgba(0,0,0,0);
+}
+.hex:hover {
+  color: rgba(0,0,0,0.6);
 }
 /*# sourceMappingURL=hexo.css.map */

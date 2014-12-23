@@ -24,6 +24,7 @@
     "coffee-reactify": "^2.1.0",
     "http-server": "^0.7.4",
     "livereload": "^0.3.4",
+    "lodash-node": "^2.4.1",
     "nib": "^1.0.4",
     "parallelshell": "^1.0.3",
     "react": "^0.12.2",

@@ -1,7 +1,18 @@
 colors = (#1d1f21 #282a2e #373b41 #969896 #b4b7b4 #c5c8c6 #e0e0e0 #ffffff #cc6666 #de935f #f0c674 #b5bd68 #8abeb7 #81a2be #b294bb #a3685a)
 
+.c1 { background: colors[8] }
+.c2 { background: colors[9] }
+.c3 { background: colors[10] }
+.c4 { background: colors[11] }
+.c5 { background: colors[12] }
+.c6 { background: colors[13] }
+.c7 { background: colors[14] }
+.c8 { background: colors[15] }
+
 body
   background colors[1]
+  height 100%
+  font-family "Helvetica Neue", Arial, sans-serif
 
 .hex-clip-vertical
   clip-path polygon(
@@ -15,6 +26,15 @@ body
 
 .hex
   @extend .hex-clip-vertical
+  position absolute
   width 100px
   height 100px
-  background colors[3]
+  margin-top: -50px
+  margin-left: -50px
+  text-align center
+  line-height 100px
+  font-size 30px
+  color rgba(#000, 0)
+
+  &:hover
+    color rgba(#000, 0.6)
