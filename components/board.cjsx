@@ -14,7 +14,7 @@ _map = require 'lodash-node/modern/collections/map'
   1 1 1 1 n
   1 1 1 n n
 ###
-boardPattern = (radius = 3)->
+boardPattern = (radius = 6)->
   tiles = _map _range(radius*2 + 1), ()-> 1
   nulls = _map _range(radius), ()-> null
 
@@ -24,25 +24,25 @@ boardPattern = (radius = 3)->
 
 module.exports = React.createClass
   getDefaultProps: ()->
-    board: boardPattern()
+    boardRadius: 4
     hexRadius: 50
     hexGutter: 2
-    hexWidth: 100
-    hexHeight: 100 * Math.sqrt(3) / 2
+    hexHeight: 100
+    hexWidth: 100 * Math.sqrt(3) / 2
+
+  getInitialState: ->
+    board: boardPattern @props.boardRadius
 
   render: ()->
     props = @props
-    hexes = _map props.board, (row, q)->
+    hexes = _map @state.board, (row, q)->
       _map row, (tile, r)->
-        if tile?
-          <Hex
-            q={q}
-            r={r}
-            x={(props.hexRadius + props.hexGutter) * q * 3/2 + props.hexWidth/2 + props.hexGutter}
-            y={(props.hexRadius + props.hexGutter) * Math.sqrt(3) * (r + q/2) - props.hexHeight}
-            color={_random(1,8)}
-          />
+        return if not tile?
+        hexRadGutter = props.hexRadius + props.hexGutter
+        x = hexRadGutter * Math.sqrt(3) * (r + (q-props.boardRadius + 3) / 2) - props.hexWidth
+        y = hexRadGutter * q * 3/2 + props.hexHeight/2 + props.hexGutter
+        <Hex q={q} r={r} x={x} y={y} key={"hex#{q}-#{r}"} />
 
-    <div>
+    <div className="board">
       {hexes}
     </div>

@@ -27,10 +27,14 @@ body {
   height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
-.hex-clip-vertical,
-.hex {
+.hex-clip-vertical {
   -webkit-clip-path: polygon(100% 50%, 75% 93.30127018922192%, 25% 93.30127018922192%, 0% 50%, 25% 6.698729810778048%, 75% 6.698729810778048%);
           clip-path: polygon(100% 50%, 75% 93.30127018922192%, 25% 93.30127018922192%, 0% 50%, 25% 6.698729810778048%, 75% 6.698729810778048%);
+}
+.hex-clip-horizontal,
+.hex {
+  -webkit-clip-path: polygon(50% 100%, 93.30127018922192% 75%, 93.30127018922192% 25%, 50% 0, 6.698729810778048% 25%, 6.698729810778048% 75%);
+          clip-path: polygon(50% 100%, 93.30127018922192% 75%, 93.30127018922192% 25%, 50% 0, 6.698729810778048% 25%, 6.698729810778048% 75%);
 }
 .hex {
   position: absolute;
@@ -40,10 +44,15 @@ body {
   margin-left: -50px;
   text-align: center;
   line-height: 100px;
-  font-size: 30px;
+  font-size: 50px/2;
   color: rgba(0,0,0,0);
+  background: #373b41;
+  cursor: pointer;
 }
 .hex:hover {
-  color: rgba(0,0,0,0.6);
+  background: rgba(204,102,102,0.2);
+}
+.board {
+  margin: 0 auto;
 }
 /*# sourceMappingURL=hexo.css.map */

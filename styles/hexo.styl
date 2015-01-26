@@ -1,4 +1,7 @@
-colors = (#1d1f21 #282a2e #373b41 #969896 #b4b7b4 #c5c8c6 #e0e0e0 #ffffff #cc6666 #de935f #f0c674 #b5bd68 #8abeb7 #81a2be #b294bb #a3685a)
+$hex-radius = 50px
+
+colors = #1d1f21, #282a2e, #373b41, #969896, #b4b7b4, #c5c8c6, #e0e0e0, #ffffff,
+  #cc6666, #de935f, #f0c674, #b5bd68, #8abeb7, #81a2be, #b294bb, #a3685a
 
 .c1 { background: colors[8] }
 .c2 { background: colors[9] }
@@ -24,17 +27,32 @@ body
     75% 6.6987298107780475%
   )
 
+.hex-clip-horizontal
+  clip-path polygon(
+    50% 100%,
+    93.30127018922192% 75%,
+    93.30127018922192% 25%,
+    50% 0,
+    6.6987298107780475% 25%,
+    6.6987298107780475% 75%
+  )
+
 .hex
-  @extend .hex-clip-vertical
+  @extend .hex-clip-horizontal
   position absolute
-  width 100px
-  height 100px
-  margin-top: -50px
-  margin-left: -50px
+  width $hex-radius * 2
+  height @width
+  margin-top -($hex-radius)
+  margin-left @margin-top
   text-align center
-  line-height 100px
-  font-size 30px
+  line-height $hex-radius * 2
+  font-size $hex-radius/2
   color rgba(#000, 0)
+  background colors[2]
+  cursor pointer
 
   &:hover
-    color rgba(#000, 0.6)
+    background rgba(colors[8], 0.2)
+
+.board
+  margin 0 auto

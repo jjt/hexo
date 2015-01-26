@@ -26,7 +26,7 @@ _map = require('lodash-node/modern/collections/map');
 boardPattern = function(radius) {
   var nulls, tiles;
   if (radius == null) {
-    radius = 3;
+    radius = 6;
   }
   tiles = _map(_range(radius * 2 + 1), function() {
     return 1;
@@ -42,30 +42,42 @@ boardPattern = function(radius) {
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
-      board: boardPattern(),
+      boardRadius: 4,
       hexRadius: 50,
       hexGutter: 2,
-      hexWidth: 100,
-      hexHeight: 100 * Math.sqrt(3) / 2
+      hexHeight: 100,
+      hexWidth: 100 * Math.sqrt(3) / 2
+    };
+  },
+  getInitialState: function() {
+    return {
+      board: boardPattern(this.props.boardRadius)
     };
   },
   render: function() {
     var hexes, props;
     props = this.props;
-    hexes = _map(props.board, function(row, q) {
+    hexes = _map(this.state.board, function(row, q) {
       return _map(row, function(tile, r) {
-        if (tile != null) {
-          return React.createElement(Hex, {
-            "q": q,
-            "r": r,
-            "x": (props.hexRadius + props.hexGutter) * q * 3 / 2 + props.hexWidth / 2 + props.hexGutter,
-            "y": (props.hexRadius + props.hexGutter) * Math.sqrt(3) * (r + q / 2) - props.hexHeight,
-            "color": _random(1, 8)
-          });
+        var hexRadGutter, x, y;
+        if (tile == null) {
+          return;
         }
+        hexRadGutter = props.hexRadius + props.hexGutter;
+        x = hexRadGutter * Math.sqrt(3) * (r + (q - props.boardRadius + 3) / 2) - props.hexWidth;
+        y = hexRadGutter * q * 3 / 2 + props.hexHeight / 2 + props.hexGutter;
+        return React.createElement(Hex, {
+          "q": q,
+          "r": r,
+          "x": x,
+          "y": y,
+          "key": "hex" + q + "-" + r
+        });
       });
     });
-    return React.createElement("div", null, hexes);
+    return React.createElement("div", {
+      "className": "board"
+    }, hexes);
   }
 });
 
